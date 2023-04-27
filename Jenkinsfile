@@ -50,14 +50,14 @@ pipeline
                 {
                     sh "echo ${DOCKER_HUB_PASSWORD} | docker login --username ${DOCKER_HUB_USERNAME} --password-stdin"
                     
-                    sshagent(['app-server-credentials']) 
-                    {
-                        sh "ssh ${APP_SERVER_USERNAME}@${APP_SERVER_IP} 'docker pull ${DOCKER_HUB_USERNAME}/${DOCKER_REPO_NAME}:${BUILD_NUMBER}'"
-                        sh "ssh ${APP_SERVER_USERNAME}@${APP_SERVER_IP} 'docker stop ${CONTAINER_NAME} || true && docker rm ${CONTAINER_NAME} || true'"
-                        sh "ssh ${APP_SERVER_USERNAME}@${APP_SERVER_IP} 'docker run -d --name ${CONTAINER_NAME} -p ${CONTAINER_PORT}:${CONTAINER_PORT} ${DOCKER_HUB_USERNAME}/${DOCKER_REPO_NAME}:${BUILD_NUMBER}'"
-                    }
+                sshagent(['app-server-credentials']) 
+                {
+                    sh "ssh ${APP_SERVER_USERNAME}@${APP_SERVER_IP} 'docker pull ${DOCKER_HUB_USERNAME}/${DOCKER_REPO_NAME}:${BUILD_NUMBER}'"
+                    sh "ssh ${APP_SERVER_USERNAME}@${APP_SERVER_IP} 'docker stop ${CONTAINER_NAME} || true && docker rm ${CONTAINER_NAME} || true'"
+                    sh "ssh ${APP_SERVER_USERNAME}@${APP_SERVER_IP} 'docker run -d --name ${CONTAINER_NAME} -p ${CONTAINER_PORT}:${CONTAINER_PORT} ${DOCKER_HUB_USERNAME}/${DOCKER_REPO_NAME}:${BUILD_NUMBER}'"
                 }
-     
+                }
+      
             }
 
         }
