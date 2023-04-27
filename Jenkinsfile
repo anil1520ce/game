@@ -4,6 +4,11 @@ pipeline
     environment 
     {
      DOCKER_REPO_NAME = 'game'
+     APP_SERVER_IP = '172.31.89.102'
+     APP_SERVER_USERNAME = 'root'
+     APP_SERVER_PASSWORD = '0143'
+     CONTAINER_NAME = 'bird-game'
+     CONTAINER_PORT = '1050'
 
     }
     stages 
@@ -36,9 +41,21 @@ pipeline
             }
                     
         }
+    stage 
+    {
+        steps
+            {
+                sshagent(['app-server-credentials']) 
+                {
+                    sh "ssh ${APP_SERVER_USERNAME}@${APP_SERVER_IP} 'docker pull ${DOCKER_HUB_USERNAME}/${DOCKER_REPO_NAME}:${BUILD_NUMBER}'"
+                    sh "ssh ${APP_SERVER_USERNAME}@${APP_SERVER_IP} 'docker stop ${CONTAINER_NAME} || true && docker rm ${CONTAINER_NAME} || true'"
+                    sh "ssh ${APP_SERVER_USERNAME}@${APP_SERVER_IP} 'docker run -d --name ${CONTAINER_NAME} -p ${CONTAINER_PORT}:${CONTAINER_PORT} ${DOCKER_HUB_USERNAME}/${DOCKER_REPO_NAME}:${BUILD_NUMBER}'"
+                }
+     
+            }
 
-    }
+        }
         
-}  
-
+    }  
+}
 
