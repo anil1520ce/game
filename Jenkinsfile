@@ -4,7 +4,7 @@ pipeline
     environment 
     {
      DOCKER_REPO_NAME = 'game'
-     APP_SERVER_IP = '172.31.89.102'
+     APP_SERVER_IP = '44.212.57.109'
      APP_SERVER_USERNAME = 'root'
      CONTAINER_NAME = 'bird-game'
      CONTAINER_PORT = '1050'
