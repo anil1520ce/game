@@ -2,8 +2,6 @@ pipeline {
     agent 
     environment 
     {
-     DOCKER_HUB_USERNAME = credentials( 'docker-hub-username')
-     DOCKER_HUB_PASSWORD = credentials( 'docker-hub-password')
      DOCKER_REPO_NAME = 'game'
 
     }
