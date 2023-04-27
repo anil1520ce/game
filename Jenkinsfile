@@ -6,7 +6,6 @@ pipeline
      DOCKER_REPO_NAME = 'game'
      APP_SERVER_IP = '172.31.89.102'
      APP_SERVER_USERNAME = 'root'
-     APP_SERVER_PASSWORD = '0143'
      CONTAINER_NAME = 'bird-game'
      CONTAINER_PORT = '1050'
 
@@ -42,7 +41,8 @@ pipeline
             }
                     
         }
-        stage 
+
+        stage ('Deploy')
         {
             steps
             {   
