@@ -7,7 +7,7 @@ pipeline
      APP_SERVER_IP = '44.212.57.109'
      APP_SERVER_USERNAME = 'root'
      CONTAINER_NAME = 'bird-game'
-     CONTAINER_PORT = '1050'
+     CONTAINER_PORT = '8000'
 
     }
     stages 
