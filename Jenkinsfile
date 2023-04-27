@@ -20,7 +20,7 @@ pipeline
         {
             steps
             {
-                sh 'docker built -t game:${BUILD_NUMBER} .'
+                sh 'docker build -t game:${BUILD_NUMBER} .'
             }
 
         }
